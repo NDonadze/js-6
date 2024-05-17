@@ -120,6 +120,7 @@
 
         const arrayButton = document.getElementById("arrayButton");
         const inputText = document.getElementById("textInput");
+        const liWrapper = document.createElement("div")
         
         arrayButton.addEventListener("click", () => {
             const textArray = [];
@@ -128,11 +129,13 @@
             
             for (let i = 0; i < textArray.length; index++) {
             const element = textArray[i];
+            liWrapper.setAttribute("id", "liWrapper")
             const li = document.createElement("li")
             li.textContent = element;
             const ul = document.createElement("ul")
             ul.appendChild(li);
-            document.body.appendChild(ul);
+            liWrapper.appendChild(ul)
+            document.body.appendChild(liWrapper)
             }
         } )
 
@@ -188,7 +191,7 @@ for (let index = 0; index < persons.length; index++) {
 }
 
 
-        // მე-4 დავალება
+// მე-4 დავალება
 
 const users = [
 {
@@ -235,11 +238,51 @@ image: "https://picsum.photos/200/300",
 }
 ];
 
+const cardWrapper = document.createElement("div");
+document.body.appendChild(cardWrapper)
 
+for (let x = 0; x < 4; x++) {
+    const user = users[x];
+    const cardBox = document.createElement("div")
+    cardWrapper.setAttribute("id", "card_wrapper")
+    cardBox.setAttribute("id", "card_box")
+    
+    const cardImage = document.createElement('img')
+    cardImage.setAttribute("src", `${user.image}`)
+    cardImage.setAttribute("id", "card_image")
+    cardBox.appendChild(cardImage)
+
+    const cardNames = document.createElement("p")
+    cardNames.textContent = `${user.first_name} ${user.last_name}`
+    cardNames.setAttribute("id", "card_names")
+    cardBox.appendChild(cardNames)
+
+    const deleteButton = document.createElement("button")
+    deleteButton.textContent = "წაშლა"
+    deleteButton.setAttribute("id", "delete_button")
+    cardBox.appendChild(deleteButton)
+
+    const infoButton = document.createElement("button")
+    infoButton.textContent = "ინფო"
+    infoButton.setAttribute("id", "info_button")
+    cardBox.appendChild(infoButton)
+
+    infoButton.addEventListener("click", () =>{
+     const emailParagraph = document.createElement("span")
+     emailParagraph.textContent = user.email
+     emailParagraph.setAttribute("id", "email_paragraph")
+     cardBox.appendChild(emailParagraph)
+     })
+
+    deleteButton.addEventListener("click", () => {
+        cardBox.remove()
+    })
+
+    cardWrapper.appendChild(cardBox)
+    document.body.appendChild(cardWrapper)
+
+}
    
-
-
-
 
 
 
