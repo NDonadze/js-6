@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="index.php" method="post" id="sign_up" name="sign_up">
+        <h1> This is sign up form</h1>
+        <input type="text" name="first_name" placeholder="First name..." id="first_name">
+        <input type="text" placeholder="Last name..." id="last_name">
+        <input type="email" placeholder="Email..." id="email">
+        <input type="password" placeholder="Password..." id="password">
+        <input type="password" placeholder="Confirm password..." id="confirm_password">
+        <textarea name="textarea" id="description" cols="30" rows="10"></textarea>
+        <button id="registration">Registrate</button>
+    </form>
+
+
+    <div class="ex2">
+        <h1>This Button can do magic!</h1>
+        <input type="text" id="textInput">
+        <button id="arrayButton">Array Button</button>
+    </div>
+
+
+    <script>
+
+        // 1-ელი დავალება
+
+        const status = document.createElement('div')
+
+        const form = document.getElementById("sign_up")
+        form.appendChild(status)
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById("first_name").value
+            const lastName = document.getElementById("last_name").value
+            const email = document.getElementById("email").value   
+            const password = document.getElementById("password").value
+            const confirmPassword = document.getElementById("confirm_password").value
+            const description = document.getElementById("description").value 
+
+            try {
+                if (name.length < 6) {
+                    document.getElementById("first_name").style.border = "2px solid red"
+                    throw new Error('Name must contain minimum 6 letter!')
+            
+                } else {
+                    document.getElementById("first_name").style.border = "2px solid green"
+                    status.textContent = "Name is valid!"
+                    status.style.color = "green"
+                    status.style.fontSize = "20px"
+                    status.style.margin = "10px 20px"
+                    status.style.fontWeight = "bold"
+                }
+                if (lastName.length <6) {
+                    document.getElementById("last_name").style.border = "2px solid red"
+                    throw new Error('Last name must contain minimum 6 letter!') 
+                    
+                } else {
+                    document.getElementById("last_name").style.border = "2px solid green"
+                    status.textContent = "Last name is valid!"
+                    status.style.color = "green"
+                    status.style.fontSize = "20px"
+                    status.style.margin = "10px 20px"
+                    status.style.fontWeight = "bold"
+                }
+                if (password.length <6) {
+                    document.getElementById("password").style.border = "2px solid red"
+                    throw new Error("Password must contain minimum 6 symbol!")
+                    
+                } else {
+                    document.getElementById("password").style.border = "2px solid green"
+                    status.textContent = "Password is valid!"
+                    status.style.color = "green"
+                    status.style.fontSize = "20px"
+                    status.style.margin = "10px 20px"
+                    status.style.fontWeight = "bold"
+                }
+                if (confirmPassword !== password) {
+                    document.getElementById("confirm_password").style.border = "2px solid red"
+                    throw new Error( "Passwords don't match!")
+                    
+                } else {
+                    document.getElementById("confirm_password").style.border = "2px solid green"
+                    status.textContent = "Passwords matches!"
+                    status.style.color = "green"
+                    status.style.fontSize = "20px"
+                    status.style.margin = "10px 20px"
+                    status.style.fontWeight = "bold"
+                }
+                if (description.length >100) {
+                    document.getElementById("description").style.border = "2px solid red"
+                    throw new Error( "Description is too big!")
+                    
+                } else {
+                    document.getElementById("description").style.border = "2px solid green"
+                    status.textContent = "Thank you!"
+                    status.style.color = "green"
+                    status.style.fontSize = "20px"
+                    status.style.margin = "10px 20px"
+                    status.style.fontWeight = "bold"
+                }
+                
+            } catch (e) {
+                status.textContent = e.message;
+                status.style.color = "red";
+                status.style.fontSize = "20px";
+                status.style.margin = "10px 20px"  
+                status.style.fontWeight = "bold"
+            }
+            
+        })
+
+
+        // მე-2 დავალება
+
+        const arrayButton = document.getElementById("arrayButton");
+        const inputText = document.getElementById("textInput");
+        
+        arrayButton.addEventListener("click", () => {
+            const textArray = [];
+            textArray.push(inputText.value);
+            inputText.value = "";
+            
+            for (let i = 0; i < textArray.length; index++) {
+            const element = textArray[i];
+            const li = document.createElement("li")
+            li.textContent = element;
+            const ul = document.createElement("ul")
+            ul.appendChild(li);
+            document.body.appendChild(ul);
+            }
+        } )
+
+        // მე-3 დავალება
+        
+
+        const persons = [
+    {
+        name: 'nikusha',
+        lastName:'donadze',
+        age: 20,
+        profession:"developer"
+    },
+    {
+        name: 'barbare',
+        lastName:'kurtanidze',
+        age: 13,
+        profession:"developer"
+    },
+    {
+        name: 'soso',
+        lastName:'falavandishvili',
+        age: 16,
+        profession:"developer"
+    },
+    {
+        name: 'mariam',
+        lastName:'kopadze',
+        age: 19,
+        profession:"teacher"
+    },
+    {
+        name: 'elene',
+        lastName:'samkurashvili',
+        age: 21,
+        profession:"householder"
+    },
+];
+
+const div = document.createElement('div')
+
+for (let index = 0; index < persons.length; index++) {
+    const element = persons[index];
+    if (element.age > 18) {
+        const li = document.createElement('li')
+        li.textContent = `${element.name} ${element.lastName} ${element.age} ${element.profession}`
+        const ul = document.createElement('ul')
+        div.setAttribute("id", "array_div")
+        ul.appendChild(li)
+        div.appendChild(ul)
+        document.body.appendChild(div)
+    }
+}
+
+
+        // მე-4 დავალება
+
+const users = [
+{
+id: 7,
+email: "michael.lawson@reqres.in",
+first_name: "Michael",
+last_name: "Lawson",
+image: "https://picsum.photos/200/300",
+},
+{
+id: 8,
+email: "lindsay.ferguson@reqres.in",
+first_name: "Lindsay",
+last_name: "Ferguson",
+image: "https://picsum.photos/200/300",
+},
+{
+id: 9,
+email: "tobias.funke@reqres.in",
+first_name: "Tobias",
+last_name: "Funke",
+image: "https://picsum.photos/200/300",
+},
+{
+id: 10,
+email: "byron.fields@reqres.in",
+first_name: "Byron",
+last_name: "Fields",
+image: "https://picsum.photos/200/300",
+},
+{
+id: 11,
+email: "george.edwards@reqres.in",
+first_name: "George",
+last_name: "Edwards",
+image: "https://picsum.photos/200/300",
+},
+{
+id: 12,
+email: "rachel.howell@reqres.in",
+first_name: "Rachel",
+last_name: "Howell",
+image: "https://picsum.photos/200/300",
+}
+];
+
+
+   
+
+
+
+
+
+
+    </script>
+</body>
+</html>
